@@ -1,0 +1,319 @@
+/*
+ * Updated Project.css file to match the premium, dark theme of the dashboard.
+ * This file applies the professional look from the dashboard to the projects page.
+ * - Refined layouts and spacing for a modern, clean look.
+ * - Subtle animations and hover effects for a premium, interactive feel.
+ * - Improved responsiveness to adapt seamlessly to different screen sizes.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+/* Global box-sizing and color variables for consistent theme */
+:root {
+    --background-color: #0d1117;
+    --text-color: #c9d1d9;
+    --heading-color: #e6edf3;
+    --primary-color: #58a6ff;
+    --primary-gradient: linear-gradient(90deg, #6c47ff, #b147ff);
+    --secondary-gradient: linear-gradient(90deg, #47b2ff, #47d6ff);
+    --card-background: #161b22;
+    --border-color: #30363d;
+    --button-primary: #6c47ff;
+    --delete-color: #f85032;
+    --delete-hover: #e73827;
+}
+
+/* Updated body style to ensure the whole viewport has a dark background */
+body {
+    margin: 0;
+    background-color: var(--background-color);
+    background: radial-gradient(circle at top, #1a0040, #0d1117 70%);
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+.project-container {
+    padding: 0.2rem 0.5rem;
+    min-height: calc(100vh - 80px); /* Adjust min-height to avoid white bar */
+    margin-top: -20px; /* Negative margin to pull content up for zero gap */
+}
+
+/* The following rules were removed because they were causing the content to slide */
+/*
+.project-container {
+    padding: 0.2rem 0.5rem;
+    margin-left: 0px; 
+    transition: margin-left 0.3s ease;
+    min-height: calc(100vh - 80px);
+    margin-top: -20px;
+}
+
+.scrum-dashboard.sidebar-expanded .project-container {
+    margin-left: 60px;
+}
+*/
+
+.project-container h2 {
+    margin-bottom: 20px;
+    color: var(--heading-color);
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.new-project-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-image: var(--secondary-gradient);
+}
+
+.new-project-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(71, 178, 255, 0.4);
+}
+
+/* Form Container with Animation */
+.project-form-wrapper {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+    margin-bottom: 0;
+}
+
+.project-form-wrapper.visible {
+    max-height: 500px; /* Adjust this value to be larger than the form's height */
+    opacity: 1;
+    margin-bottom: 2rem;
+}
+
+/* Form Styles */
+.project-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 2rem;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-input {
+    padding: 12px 18px;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    flex: 1 1 200px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(88, 166, 255, 0.5);
+}
+
+.form-input::placeholder {
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.form-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-button.primary-btn {
+    background-image: var(--primary-gradient);
+}
+
+.form-button.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(108, 71, 255, 0.4);
+}
+
+.form-button.cancel-btn {
+    background-color: var(--border-color);
+}
+
+.form-button.cancel-btn:hover {
+    background-color: #495057;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(48, 54, 61, 0.4);
+}
+
+
+/* Table Styles */
+.project-table {
+    width: 100%;
+    border-collapse: separate; /* Use separate for border-radius */
+    border-spacing: 0;
+    margin-top: 25px;
+    background-color: var(--card-background);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-table th,
+.project-table td {
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px;
+    text-align: left;
+}
+
+.project-table thead tr th:first-child { border-top-left-radius: 12px; }
+.project-table thead tr th:last-child { border-top-right-radius: 12px; }
+.project-table tbody tr:last-child td:first-child { border-bottom-left-radius: 12px; }
+.project-table tbody tr:last-child td:last-child { border-bottom-right-radius: 12px; }
+.project-table tbody tr:last-child td { border-bottom: none; }
+
+.project-table th {
+    background-color: #1a2027;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.project-table tbody tr:hover {
+    background-color: #1a2027;
+    transform: scale(1.01);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.action-btn.edit-btn {
+    background-color: var(--primary-color);
+}
+
+.action-btn.edit-btn:hover {
+    background-color: #479fff;
+    transform: translateY(-1px);
+}
+
+.action-btn.delete-btn {
+    background-color: var(--delete-color);
+}
+
+.action-btn.delete-btn:hover {
+    background-color: var(--delete-hover);
+    transform: translateY(-1px);
+}
+
+/* Custom Modal Styles - Enhanced */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    max-width: 400px;
+    text-align: center;
+    transform: scale(0.9);
+    animation: scaleUp 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+.modal-title {
+    margin-top: 0;
+    color: var(--heading-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.modal-message {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.error-message {
+    color: var(--delete-color);
+    margin-top: 10px;
+    font-weight: 600;
+    padding: 10px;
+    background-color: rgba(255, 88, 88, 0.1);
+    border-radius: 8px;
+}
+
+/* Custom animations for modal */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .project-container {
+        padding: 1rem;
+        margin-left: 0;
+    }
+    
+    .actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .new-project-btn {
+        width: 100%;
+    }
+}

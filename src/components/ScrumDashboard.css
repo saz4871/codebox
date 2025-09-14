@@ -1,0 +1,698 @@
+/*
+ * Enhanced CSS for a premium, dark-themed Scrum Dashboard.
+ * This file applies the professional look from the landing page to the dashboard.
+ * - Refined layouts and spacing for a modern, clean look.
+ * - Subtle animations and hover effects for a premium, interactive feel.
+ * - Improved responsiveness to adapt seamlessly to different screen sizes.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Global box-sizing for consistent layout behavior */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/* Color variables from the landing page */
+:root {
+    --background-color: #0d1117;
+    --text-color: #c9d1d9;
+    --heading-color: #e6edf3;
+    --primary-color: #58a6ff;
+    --primary-gradient: linear-gradient(90deg, #6c47ff, #b147ff);
+    --secondary-gradient: linear-gradient(90deg, #47b2ff, #47d6ff);
+    --button-hover-bg: rgba(108, 71, 255, 0.1);
+    --button-primary: #6c47ff;
+    --card-background: #161b22;
+    --border-color: #30363d;
+    --sidebar-bg: #161b22;
+    --sidebar-width-collapsed: 60px;
+    --sidebar-width-expanded: 220px;
+    --danger-color: #ff5858;
+    --header-height: 80px; /* New variable for the combined header height */
+    --logout-gradient: linear-gradient(90deg, #ff5858, #e73827); /* New gradient for the logout button */
+}
+
+/* Custom Animations */
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(108, 71, 255, 0.2), 0 0 20px rgba(108, 71, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 5px rgba(108, 71, 255, 0.1), 0 0 10px rgba(108, 71, 255, 0.05);
+    }
+}
+
+/* Base Dashboard Layout */
+.scrum-dashboard {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    background: radial-gradient(circle at top, #1a0040, #0d1117 70%);
+    background-attachment: fixed;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Combined and fixed header for logo, search, and user profile */
+.scrum-header {
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width-collapsed);
+    width: calc(100% - var(--sidebar-width-collapsed));
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Changed to center for logo */
+    background-color: rgba(13, 17, 23, 0.7);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 2rem;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.scrum-header .logo {
+    font-size: 2.2rem; /* Increased logo size */
+    font-weight: 800;
+    background-image: var(--primary-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+/* Positioned header-right to the right */
+.scrum-header .header-right {
+    position: absolute;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.scrum-header .search-input {
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-background);
+    color: var(--text-color);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    max-width: 500px;
+    flex-grow: 1;
+}
+
+.scrum-header .search-input::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.scrum-header .search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
+}
+
+.scrum-header .user-profile {
+    background-color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.scrum-header .user-profile:hover {
+    background-color: #479fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(88, 166, 255, 0.3);
+}
+
+main {
+    margin-top: var(--header-height); /* Add margin to account for fixed header */
+    padding-left: var(--sidebar-width-collapsed); /* Fixed padding */
+}
+
+/* New CSS for main content transition */
+.main-content-wrapper {
+    padding: 1.5rem 2rem;
+    animation: fadeInSlideIn 0.5s ease-out;
+}
+
+/* New style for page headings */
+.page-heading {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding: 0 2rem;
+}
+
+@keyframes fadeInSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tabs */
+.scrum-tabs {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 40px;
+    margin: 0.5rem 0 15px;
+}
+
+.scrum-tabs button {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.scrum-tabs button:hover {
+    background-color: rgba(108, 71, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.scrum-tabs button.active {
+    background-image: var(--primary-gradient);
+    border-color: #6c47ff;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(108, 71, 255, 0.3);
+}
+
+/* New Filter Controls */
+.filter-controls {
+    display: flex;
+    gap: 20px;
+    align-items: center; /* Use center for better alignment */
+    justify-content: center; /* Centers the whole block */
+    width: 100%;
+    padding: 0 40px;
+    margin: 20px 0;
+}
+
+.filter-controls label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.filter-controls select {
+    margin-top: 5px;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    font-size: 14px;
+    background-color: var(--card-background);
+    color: var(--text-color);
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.filter-controls select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.apply-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 28px;
+}
+
+.apply-btn:hover {
+    background-color: #479fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(88, 166, 255, 0.3);
+}
+
+/* Summary Cards */
+.summary-cards {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 40px;
+    margin: 30px 0;
+}
+
+.card {
+    flex: 1 1 200px;
+    padding: 2rem;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(108, 71, 255, 0.3);
+    border-color: #6c47ff;
+}
+
+.open-sprints {
+    background: linear-gradient(135deg, #f85032, #e73827);
+}
+
+.story-points-backlogs {
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+}
+
+.card-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.card-value {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.card-subtitle {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
+/* Sprint Table */
+.sprint-table-container {
+    margin-top: 40px;
+    width: 100%;
+    padding: 0 40px;
+    margin: 40px 0;
+}
+
+.sprint-table-container h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.sprint-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--card-background);
+}
+
+.sprint-table th,
+.sprint-table td {
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    text-align: left;
+}
+
+.sprint-table th {
+    background-color: #161b22;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.expand-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.expand-btn:hover {
+    background-color: #479fff;
+    transform: scale(1.1);
+}
+
+/* Actions */
+.actions {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 0 40px;
+    margin: 20px 0;
+}
+
+.new-sprint-btn {
+    background-image: var(--secondary-gradient);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.new-sprint-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(71, 178, 255, 0.3);
+}
+
+.new-sprint-btn:disabled {
+    background-image: none;
+    background-color: var(--border-color);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Sidebar - Enhanced with Hover Effect */
+.sidebar {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: var(--sidebar-width-collapsed);
+    height: calc(100vh - var(--header-height));
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: width 0.3s ease;
+    z-index: 1001; /* Set a high z-index to overlay content */
+    overflow: hidden;
+}
+
+.sidebar .sidebar-top {
+    margin-top: 10px;
+}
+
+.sidebar:hover {
+    width: var(--sidebar-width-expanded);
+}
+
+/* Flexbox to push the Logout button to the bottom */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This will push the content to the top and bottom */
+}
+
+.sidebar-toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-toggle-btn:hover {
+    transform: scale(1.2);
+}
+
+.sidebar button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    text-align: left;
+}
+
+.sidebar button.active {
+    background-color: var(--button-primary);
+    color: white;
+    transform: translateX(5px);
+    box-shadow: 0 4px 10px rgba(108, 71, 255, 0.3);
+}
+
+.sidebar button:hover:not(.logout) {
+    background-color: rgba(108, 71, 255, 0.1);
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+/* Logout button specific styles - Updated */
+.sidebar button.logout {
+    background-image: var(--logout-gradient);
+    color: white;
+    margin-top: auto; /* Pushes the button to the bottom */
+    border-radius: 9999px; /* Rounded corners */
+    margin: 10px 10px 20px 10px; /* Add margin around the button */
+    padding: 1rem; /* Adjust padding for a better look */
+    width: auto; /* Allow width to be determined by content */
+    text-align: center;
+    font-weight: 600;
+}
+
+.sidebar:hover button.logout {
+    width: calc(100% - 20px); /* Adjust width when sidebar is expanded */
+}
+
+.sidebar button.logout:hover {
+    background-image: linear-gradient(90deg, #d64747, #d42716); /* Darker hover state */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 88, 88, 0.3);
+}
+
+.sidebar-icon {
+    font-size: 24px;
+}
+
+.sidebar-text {
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .sidebar-text {
+    opacity: 1;
+}
+
+/* Task Board Columns - New premium styling */
+.task-board {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.task-board-container {
+    width: 100%;
+    padding: 0 40px;
+    margin: 20px 0;
+}
+
+.task-board .column {
+    flex: 1 1 300px;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+}
+
+.task-board .column:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 40px rgba(88, 166, 255, 0.8), 0 0 80px rgba(88, 166, 255, 0.6);
+    transform: translateY(-5px) scale(1.02);
+}
+
+.task-board .column h4 {
+    color: var(--heading-color);
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.task-board .column p {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Utility classes for loading/error messages */
+.loading-message, .error-message {
+    width: 100%;
+    margin: 20px auto;
+    padding: 1rem 40px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+.loading-message {
+    background-color: rgba(88, 166, 255, 0.2);
+    color: var(--primary-color);
+}
+
+.error-message {
+    background-color: rgba(255, 88, 88, 0.2);
+    color: var(--danger-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.error-message .close-btn {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .scrum-tabs, .filter-controls, .summary-cards, .sprint-table-container, .actions, .task-board-container {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .scrum-dashboard {
+        padding-left: 20px;
+    }
+
+    .scrum-header {
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .scrum-header .header-right {
+        position: static;
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .scrum-header .search-input {
+        width: 100%;
+    }
+
+    main {
+        margin-top: 140px; /* Adjust margin for mobile header height */
+    }
+
+    .scrum-tabs {
+        margin-top: 2rem;
+        flex-direction: column;
+    }
+
+    .scrum-tabs button {
+        width: 100%;
+    }
+
+    .filter-controls {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .filter-controls label, .filter-controls select {
+        width: 100%;
+    }
+
+    .apply-btn {
+        width: 100%;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .new-sprint-btn {
+        width: 100%;
+    }
+
+    .sidebar {
+        width: 0;
+        overflow: hidden;
+        display: none;
+    }
+
+    .scrum-dashboard.sidebar-expanded {
+        padding-left: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scrum-tabs button {
+        flex: 1 1 100%;
+        margin-bottom: 5px;
+    }
+
+    .card {
+        flex: 1 1 100%;
+    }
+
+    .sprint-table {
+        font-size: 12px;
+    }
+
+    .task-board .column {
+        flex: 1 1 100%;
+    }
+
+    .scrum-tabs, .filter-controls, .summary-cards, .sprint-table-container, .actions, .task-board-container {
+        padding: 0 10px;
+    }
+}

@@ -1,0 +1,8 @@
+npm install react-scripts@5.0.1 
+npm start
+npm audit fix
+npm audit fix --force
+npm install gsap
+npm install react-icons
+npm install lucide-react react-helmet
+

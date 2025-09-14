@@ -1,0 +1,304 @@
+/*
+ * Enhanced CSS for a premium dark theme landing page.
+ * This file replaces the old landing-page.css with a new, professional design.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+/* Global box-sizing for consistent layout behavior */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+:root {
+  --background-color: #0d1117;
+  --text-color: #c9d1d9;
+  --heading-color: #e6edf3;
+  --primary-color: #58a6ff;
+  --primary-gradient: linear-gradient(90deg, #6c47ff, #b147ff);
+  --secondary-gradient: linear-gradient(90deg, #47b2ff, #47d6ff);
+  --button-hover: #4338ca;
+  --card-background: #161b22;
+  --border-color: #30363d;
+}
+
+/* Custom Animations */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(108, 71, 255, 0.4), 0 0 80px rgba(108, 71, 255, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(108, 71, 255, 0.3), 0 0 60px rgba(108, 71, 255, 0.1); }
+}
+
+/* New custom animations for a more dynamic feel */
+@keyframes background-glow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Main container styles */
+.landing-container {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  min-height: 100vh;
+  padding: 0; /* Removing padding from the container itself */
+  
+  /* Adding a subtle gradient background to the entire page */
+  background: radial-gradient(circle at top, #1a0040, #0d1117 70%);
+  background-attachment: fixed;
+  
+  /* Prevent horizontal scrolling */
+  overflow-x: hidden;
+}
+
+/* Header styles */
+.landing-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: rgba(13, 17, 23, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--heading-color);
+  background-image: var(--primary-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  transition: transform 0.3s ease;
+  letter-spacing: -1px;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: rgba(108, 71, 255, 0.1);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* Hero section styles */
+.hero-section {
+  padding: 10rem 1rem 6rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: rgba(108, 71, 255, 0.1);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  animation: glow-pulse 6s infinite ease-in-out;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-content h2 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--heading-color);
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.hero-content h2 span {
+  background-image: var(--primary-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.btn {
+  padding: 1rem 2.5rem;
+  border-radius: 9999px; /* Fully rounded */
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn.primary {
+  background-image: var(--primary-gradient);
+  color: white;
+  border: none;
+}
+
+.btn.primary:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(108, 71, 255, 0.5);
+}
+
+.btn.secondary {
+  border: 2px solid #58a6ff;
+  color: #58a6ff;
+  background: transparent;
+}
+
+.btn.secondary:hover {
+  background-color: #58a6ff1a;
+  transform: translateY(-5px) scale(1.05);
+  color: white;
+}
+
+/* Features section styles */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature {
+  padding: 2.5rem;
+  border-radius: 12px;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-10px) scale(1.03);
+  border-color: #6c47ff;
+  box-shadow: 0 8px 20px rgba(108, 71, 255, 0.3);
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--heading-color);
+  font-weight: 700;
+}
+
+.feature h3 svg {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.feature p {
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Footer styles */
+.landing-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-color);
+  max-width: 1200px;
+  margin: 3rem auto 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .landing-header {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 2.5rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-header {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+  }
+  
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
